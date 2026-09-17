@@ -1,0 +1,15 @@
+const language = "JaoLang"
+
+let name = "Joao"
+let age = 18
+let score = 97.5
+
+fn greet(person) {
+    print("Hello " + person)
+}
+
+if (age >= 18 && score > 90) {
+    greet(name)
+} else {
+    print("Access denied")
+}
