@@ -1,7 +1,8 @@
 import { readFileSync } from "node:fs";
 
-import { Lexer } from "./lexer/lexer.js";
 import { JaoError } from "./errors/jao-error.js";
+import { Lexer } from "./lexer/lexer.js";
+import { Parser } from "./parser/parser.js";
 
 function main(): void {
   const source = readFileSync(
@@ -13,7 +14,13 @@ function main(): void {
     const lexer = new Lexer(source);
     const tokens = lexer.tokenize();
 
-    console.table(tokens);
+    const parser = new Parser(tokens);
+    const program = parser.parse();
+
+    console.dir(program, {
+      depth: null,
+      colors: true,
+    });
   } catch (error) {
     if (error instanceof JaoError) {
       console.error(
